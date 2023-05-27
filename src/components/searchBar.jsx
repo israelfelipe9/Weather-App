@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+const SearchBar = ({ setCity }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setCity(e.target.city.value);
+  };
 
-const SearchBar = ({ fetchCoordinates }) => {
   return (
-    <form onSubmit={fetchCoordinates}>
+    <form onSubmit={handleSubmit}>
       <input name="city" type="text" placeholder="City" />
       <button type={"submit"}> Search</button>
     </form>
