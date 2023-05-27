@@ -1,16 +1,11 @@
-const SearchBar = (props) => {
-  const { updateCity, fetchWeather } = props;
+import React, { useState } from "react";
+
+const SearchBar = ({ fetchCoordinates }) => {
   return (
-    <>
-      <h1>Find Weather of your city</h1>
-      <form onSubmit={fetchWeather}>
-        <input
-          onChange={(e) => updateCity(e.target.value)}
-          placeholder="City"
-        />
-        <button type={"submit"}>Search</button>
-      </form>
-    </>
+    <form onSubmit={fetchCoordinates}>
+      <input name="city" type="text" placeholder="City" />
+      <button type={"submit"}> Search</button>
+    </form>
   );
 };
 export default SearchBar;

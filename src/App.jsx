@@ -1,32 +1,39 @@
 import React, { useState } from "react";
-import "./App.css";
 import WeatherComponent from "./components/weatherDisplay";
 import SearchBar from "./components/searchBar";
+import "./App.css";
 
 function App() {
-  const [city, updateCity] = useState();
-  const [weather, updateWeather] = useState();
+  const [weather, setWeather] = useState();
 
-  const fetchWeather = async (e) => {
+  const fetchWeather = async (lat, long) => {
+    const response = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current_weather=true`
+    );
+    const newData = await response.json();
+    setWeather(newData.current_weather);
+    console.log(newData.current_weather);
+  };
+
+  const fetchCoordinates = async (e) => {
     e.preventDefault();
 
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fe4feefa8543e06d4f3c66d92c61b69c`
+      `https://geocoding-api.open-meteo.com/v1/search?name=${e.target.city.value}&count=1`
     );
     const newData = await response.json();
-    updateWeather(newData);
-    console.log(newData);
+
+    await fetchWeather(
+      newData.results[0].latitude,
+      newData.results[0].longitude
+    );
   };
 
   return (
-    <div>
-      <h1>React Weather App</h1>
-      {city && weather ? (
-        <WeatherComponent weather={weather} city={city} />
-      ) : (
-        <SearchBar updateCity={updateCity} fetchWeather={fetchWeather} />
-      )}
-    </div>
+    <>
+      <SearchBar fetchCoordinates={fetchCoordinates} />
+      {weather && <WeatherComponent weather={weather} />}
+    </>
   );
 }
 
