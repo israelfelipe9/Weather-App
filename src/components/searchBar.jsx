@@ -1,3 +1,5 @@
+import "./searchBar.css";
+
 const SearchBar = ({ setCity }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -6,8 +8,16 @@ const SearchBar = ({ setCity }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input name="city" type="text" placeholder="City" />
-      <button type={"submit"}> Search</button>
+      <input
+        className="searchInput"
+        name="city"
+        type="text"
+        placeholder="City"
+      />
+      <button className="searchButton" type={"submit"}>
+        {" "}
+        Search
+      </button>
     </form>
   );
 };

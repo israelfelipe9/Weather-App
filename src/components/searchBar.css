@@ -1,0 +1,28 @@
+.searchButton {
+  background-color: #eee;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+}
+
+.searchButton:hover {
+  background-color: #4caf50;
+  color: white;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: white;
+  background-position: 10px 10px;
+  font-size: 16px;
+  background-repeat: no-repeat;
+}
